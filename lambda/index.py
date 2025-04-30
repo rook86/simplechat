@@ -43,7 +43,7 @@ def lambda_handler(event, context):
         
         # 外部 API のレスポンスを解析
         response_body = json.loads(resp_data)
-        assistant_response = response_body.get('response', '')
+        assistant_response = response_body.get('generated_text', '') or response_body.get('response', '') or response_body.get('content', '')
         
         # 会話履歴を更新
         messages = conversation_history.copy()
